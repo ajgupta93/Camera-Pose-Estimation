@@ -1,0 +1,1064 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass[11pt]{article}
+
+    
+    
+    \usepackage[T1]{fontenc}
+    % Nicer default font (+ math font) than Computer Modern for most use cases
+    \usepackage{mathpazo}
+
+    % Basic figure setup, for now with no caption control since it's done
+    % automatically by Pandoc (which extracts ![](path) syntax from Markdown).
+    \usepackage{graphicx}
+    % We will generate all images so they have a width \maxwidth. This means
+    % that they will get their normal width if they fit onto the page, but
+    % are scaled down if they would overflow the margins.
+    \makeatletter
+    \def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth
+    \else\Gin@nat@width\fi}
+    \makeatother
+    \let\Oldincludegraphics\includegraphics
+    % Set max figure width to be 80% of text width, for now hardcoded.
+    \renewcommand{\includegraphics}[1]{\Oldincludegraphics[width=.8\maxwidth]{#1}}
+    % Ensure that by default, figures have no caption (until we provide a
+    % proper Figure object with a Caption API and a way to capture that
+    % in the conversion process - todo).
+    \usepackage{caption}
+    \DeclareCaptionLabelFormat{nolabel}{}
+    \captionsetup{labelformat=nolabel}
+
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{xcolor} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{textcomp} % defines textquotesingle
+    % Hack from http://tex.stackexchange.com/a/47451/13684:
+    \AtBeginDocument{%
+        \def\PYZsq{\textquotesingle}% Upright quotes in Pygmentized code
+    }
+    \usepackage{upquote} % Upright quotes for verbatim code
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage[inline]{enumitem} % IRkernel/repr support (it uses the enumerate* environment)
+    \usepackage[normalem]{ulem} % ulem is needed to support strikethroughs (\sout)
+                                % normalem makes italics be italics, not underlines
+    
+
+    
+    
+    % Colors for the hyperref package
+    \definecolor{urlcolor}{rgb}{0,.145,.698}
+    \definecolor{linkcolor}{rgb}{.71,0.21,0.01}
+    \definecolor{citecolor}{rgb}{.12,.54,.11}
+
+    % ANSI colors
+    \definecolor{ansi-black}{HTML}{3E424D}
+    \definecolor{ansi-black-intense}{HTML}{282C36}
+    \definecolor{ansi-red}{HTML}{E75C58}
+    \definecolor{ansi-red-intense}{HTML}{B22B31}
+    \definecolor{ansi-green}{HTML}{00A250}
+    \definecolor{ansi-green-intense}{HTML}{007427}
+    \definecolor{ansi-yellow}{HTML}{DDB62B}
+    \definecolor{ansi-yellow-intense}{HTML}{B27D12}
+    \definecolor{ansi-blue}{HTML}{208FFB}
+    \definecolor{ansi-blue-intense}{HTML}{0065CA}
+    \definecolor{ansi-magenta}{HTML}{D160C4}
+    \definecolor{ansi-magenta-intense}{HTML}{A03196}
+    \definecolor{ansi-cyan}{HTML}{60C6C8}
+    \definecolor{ansi-cyan-intense}{HTML}{258F8F}
+    \definecolor{ansi-white}{HTML}{C5C1B4}
+    \definecolor{ansi-white-intense}{HTML}{A1A6B2}
+
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{HW3}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ch\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@cpf\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=urlcolor,
+      linkcolor=linkcolor,
+      citecolor=citecolor,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \section{CSE 252B: Computer Vision II, Winter 2018 -- Assignment
+3}\label{cse-252b-computer-vision-ii-winter-2018-assignment-3}
+
+\subsubsection{Instructor: Ben Ochoa}\label{instructor-ben-ochoa}
+
+\subsubsection{Due: Wednesday, February 21, 2018, 11:59
+PM}\label{due-wednesday-february-21-2018-1159-pm}
+
+    \subsection{Instructions}\label{instructions}
+
+\begin{itemize}
+\tightlist
+\item
+  Review the academic integrity and collaboration policies on the course
+  website.
+\item
+  This assignment must be completed individually.
+\item
+  This assignment contains both math and programming problems.
+\item
+  All solutions must be written in this notebook
+\item
+  Math problems must be done in Markdown/LATEX. Remember to show work
+  and describe your solution.
+\item
+  Programming aspects of this assignment must be completed using Python
+  in this notebook.
+\item
+  This notebook contains skeleton code, which should not be modified
+  (This is important for standardization to facilate effeciant grading).
+\item
+  You may use python packages for basic linear algebra, but you may not
+  use packages that directly solve the problem. Ask the instructor if in
+  doubt.
+\item
+  You must submit this notebook exported as a pdf. You must also submit
+  this notebook as an .ipynb file.
+\item
+  You must submit both files (.pdf and .ipynb) on Gradescope. You must
+  mark each problem on Gradescope in the pdf.
+\item
+  It is highly recommended that you begin working on this assignment
+  early.
+\end{itemize}
+
+    \subsection{Problem 1 (Programing): Estimation of the camera pose -
+Outlier rejection (20
+points)}\label{problem-1-programing-estimation-of-the-camera-pose---outlier-rejection-20-points}
+
+Download input data from the course website. The file hw3\_points3D.txt
+contains the coordinates of 60 scene points in 3D (each line of the file
+gives the \(\tilde{X}_i\), \(\tilde{Y}_i\), and \(\tilde{Z}_i\)
+inhomogeneous coordinates of a point). The file hw3\_points2D.txt
+contains the coordinates of the 60 corresponding image points in 2D
+(each line of the file gives the \(\tilde{x}_i\) and \(\tilde{y}_i\)
+inhomogeneous coordinates of a point). The corresponding 3D scene and 2D
+image points contain both inlier and outlier correspondences. For the
+inlier correspondences, the scene points have been randomly generated
+and projected to image points under a camera projection matrix (i.e.,
+\(\boldsymbol{x}_i = \boldsymbol{P}  \boldsymbol{X}_i\)), then noise has
+been added to the image point coordinates.
+
+The camera calibration matrix was calculated for a \(1280 \times 720\)
+sensor and \(45\,^\circ\) horizontal field of view lens. The resulting
+camera calibration matrix is given by
+
+\(\boldsymbol{K} = \left[  \begin{array}{c c c}  1545.0966799187809 & 0 & 639.5\\  0 & 1545.0966799187809 & 359.5\\  0 & 0 & 1  \end{array}\right]\)
+
+For each image point
+\(\boldsymbol{x} = (x, y, w)^\top = (\tilde{x},  \tilde{y}, 1)^\top\),
+calculate the point in normalized coordinates
+\(\hat{\boldsymbol{x}} = \boldsymbol{K}^{-1} \boldsymbol{x}\).
+
+Determine the set of inlier point correspondences using the M-estimator
+Sample Consensus (MSAC) algorithm, where the maximum number of attempts
+to find a consensus set is determined adaptively. For each trial, use
+the 3-point algorithm of Finsterwalder (as described in the paper by
+Haralick et al.) to estimate the camera pose (i.e., the rotation
+\(\boldsymbol{R}\) and translation \(\boldsymbol{t}\) from the world
+coordinate frame to the camera coordinate frame), resulting in up to 4
+solutions, and calculate the error and cost for each solution. Note that
+the 3-point algorithm requires the 2D points in normalized coordinates,
+not in image coordinates. Calculate the projection error, which is the
+(squared) distance between projected points (the points in 3D projected
+under the normalized camera projection matrix
+\(\hat{\boldsymbol{P}} = [\boldsymbol{R} | \boldsymbol{t}]\)) and the
+measured points in normalized coordinates (hint: the error tolerance is
+simpler to calculate in image coordinates using
+\(\boldsymbol{P} =  \boldsymbol{K} [\boldsymbol{R} | \boldsymbol{t}]\)
+than in normalized coordinates using
+\(\hat{\boldsymbol{P}} = [\boldsymbol{R} | \boldsymbol{t}]\)).
+
+hint: this problem has codimension 2).
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}166}]:} \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+          \PY{k+kn}{import} \PY{n+nn}{matplotlib}\PY{n+nn}{.}\PY{n+nn}{pyplot} \PY{k}{as} \PY{n+nn}{plt}
+          \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{stats} \PY{k}{import} \PY{n}{chi2}
+          \PY{k+kn}{from} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{linalg} \PY{k}{import} \PY{n}{expm}
+          
+          \PY{n}{x}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{loadtxt}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hw3\PYZus{}points2D.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{T}
+          \PY{n}{X}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{loadtxt}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{hw3\PYZus{}points3D.txt}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{T}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{x is}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{x}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{X is}\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{)}
+          
+          \PY{n}{K} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mf}{1545.0966799187809}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{639.5}\PY{p}{]}\PY{p}{,} 
+                \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mf}{1545.0966799187809}\PY{p}{,} \PY{l+m+mf}{359.5}\PY{p}{]}\PY{p}{,} 
+                \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+          
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{K =}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{n}{K}\PY{p}{)}
+          
+          \PY{k}{def} \PY{n+nf}{toHomo}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{} converts points from inhomogeneous to homogeneous coordinates}
+              \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{vstack}\PY{p}{(}\PY{p}{(}\PY{n}{x}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{x}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+          \PY{k}{def} \PY{n+nf}{fromHomo}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{} converts points from homogeneous to inhomogeneous coordinates}
+              \PY{k}{return} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{o}{/}\PY{n}{x}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{]}
+          
+          \PY{k}{def} \PY{n+nf}{proj}\PY{p}{(}\PY{n}{P}\PY{p}{,}\PY{n}{X}\PY{p}{)}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{} projects 3d points X to 2d using projection matrix P}
+              \PY{k}{return} \PY{n}{fromHomo}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{P}\PY{p}{,}\PY{n}{toHomo}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+              
+              
+          \PY{k}{def} \PY{n+nf}{displayResults}\PY{p}{(}\PY{n}{R}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{K}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{inliers}\PY{p}{,} \PY{n}{iters}\PY{p}{,} \PY{n}{cost}\PY{p}{)}\PY{p}{:}
+              \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{R = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n+nb}{print} \PY{p}{(}\PY{n}{R}\PY{p}{)}
+              \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{t = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n+nb}{print} \PY{p}{(}\PY{n}{t}\PY{p}{)}
+              \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cost = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{cost}\PY{p}{)}
+              \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{itterations = }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{iters}\PY{p}{)}
+          
+              \PY{n}{x\PYZus{}proj} \PY{o}{=} \PY{n}{proj}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{K}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{hstack}\PY{p}{(}\PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{t}\PY{p}{)}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{X}\PY{p}{)}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.k}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n}{x\PYZus{}proj}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,} \PY{n}{x\PYZus{}proj}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{,}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{.r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{x}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                  \PY{k}{if} \PY{n}{i} \PY{o+ow}{in} \PY{n}{inliers}\PY{p}{:}
+                      \PY{n}{line\PYZus{}style} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{\PYZhy{}}\PY{l+s+s1}{\PYZsq{}}
+                  \PY{k}{else}\PY{p}{:}
+                      \PY{n}{line\PYZus{}style} \PY{o}{=} \PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{:}\PY{l+s+s1}{\PYZsq{}}
+                  \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{p}{[}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{x\PYZus{}proj}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{x\PYZus{}proj}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{n}{line\PYZus{}style}\PY{o}{+}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{r}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          
+              \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+              
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+x is (2, 60)
+X is (3, 60)
+K =
+[[  1.54509668e+03   0.00000000e+00   6.39500000e+02]
+ [  0.00000000e+00   1.54509668e+03   3.59500000e+02]
+ [  0.00000000e+00   0.00000000e+00   1.00000000e+00]]
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}167}]:} \PY{k}{def} \PY{n+nf}{computeModel}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{x\PYZus{}full}\PY{p}{,} \PY{n}{X\PYZus{}full}\PY{p}{,} \PY{n}{K}\PY{p}{,} \PY{n}{sampleidx}\PY{p}{)}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{}print(\PYZsq{}computeModel\PYZsq{})}
+              \PY{n}{x} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{sampleidx}\PY{p}{]}
+              \PY{n}{X} \PY{o}{=} \PY{n}{X\PYZus{}full}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{sampleidx}\PY{p}{]}
+              \PY{n}{x\PYZus{}hom} \PY{o}{=} \PY{n}{x\PYZus{}full}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{sampleidx}\PY{p}{]}
+          
+              \PY{n}{P}\PY{p}{,} \PY{n}{bad} \PY{o}{=} \PY{n}{finsterwalder}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{X}\PY{p}{)}
+              \PY{n}{R\PYZus{}model} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+              \PY{n}{t\PYZus{}model} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+              \PY{k}{if} \PY{n}{bad}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{:}
+                  \PY{k}{return} \PY{n}{R\PYZus{}model}\PY{p}{,} \PY{n}{t\PYZus{}model}\PY{p}{,} \PY{n}{bad}
+              \PY{n}{n}\PY{p}{,}\PY{n}{\PYZus{}}\PY{p}{,}\PY{n}{\PYZus{}} \PY{o}{=} \PY{n}{P}\PY{o}{.}\PY{n}{shape}
+              \PY{n}{errors} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+              \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{cost\PYZus{}min} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{inf}
+              \PY{n}{tolerance} \PY{o}{=} \PY{n}{chi2}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{l+m+mf}{0.95}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+              
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                  \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}check shape\PYZsq{}\PYZsq{}\PYZsq{}}
+                  \PY{n}{R}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{bad} \PY{o}{=} \PY{n}{umeyama}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{P}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+          
+                  \PY{k}{if} \PY{n}{bad}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{:}
+                      \PY{k}{continue}
+                  \PY{l+s+sd}{\PYZsq{}\PYZsq{}\PYZsq{}check shape\PYZsq{}\PYZsq{}\PYZsq{}}
+                  \PY{n}{error\PYZus{}vals} \PY{o}{=} \PY{n}{computeError}\PY{p}{(}\PY{n}{x\PYZus{}full}\PY{p}{,} \PY{n}{X\PYZus{}full}\PY{p}{,} \PY{n}{R}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{K}\PY{p}{)}
+                  \PY{n}{cost} \PY{o}{=} \PY{n}{computeCost}\PY{p}{(}\PY{n}{error\PYZus{}vals}\PY{p}{,} \PY{n}{tolerance}\PY{p}{)}
+                  \PY{n}{errors}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{error\PYZus{}vals}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{p}{)}
+                  \PY{k}{if} \PY{n}{count}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{:}
+                      \PY{n}{R\PYZus{}model} \PY{o}{=} \PY{n}{R}
+                      \PY{n}{t\PYZus{}model} \PY{o}{=} \PY{n}{t}
+                      \PY{n}{count} \PY{o}{=} \PY{l+m+mi}{1}
+                      \PY{n}{cost\PYZus{}min} \PY{o}{=} \PY{n}{cost}
+                  \PY{k}{elif} \PY{n}{cost\PYZus{}min} \PY{o}{\PYZgt{}} \PY{n}{cost}\PY{p}{:}
+                      \PY{n}{R\PYZus{}model} \PY{o}{=} \PY{n}{R}
+                      \PY{n}{t\PYZus{}model} \PY{o}{=} \PY{n}{t}
+                      \PY{n}{cost\PYZus{}min} \PY{o}{=} \PY{n}{cost}
+              \PY{k}{return} \PY{n}{R\PYZus{}model}\PY{p}{,} \PY{n}{t\PYZus{}model}\PY{p}{,} \PY{n}{bad}
+              
+          \PY{k}{def} \PY{n+nf}{finsterwalder}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{X}\PY{p}{)}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{}print(\PYZsq{}finsterwalder\PYZsq{})}
+              \PY{n}{bad} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{P} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+              \PY{n}{a} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+              \PY{n}{b} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+              \PY{n}{c} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+              \PY{n}{f} \PY{o}{=} \PY{l+m+mi}{1}
+              \PY{n}{j} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{u\PYZus{}x} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{/}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{]}
+                  \PY{n}{v\PYZus{}x} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{/}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{]}
+                  \PY{n}{z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{u\PYZus{}x}\PY{p}{,}\PY{n}{v\PYZus{}x}\PY{p}{,}\PY{n}{f}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}
+                  \PY{n}{j}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{l+m+mf}{1.0}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{u\PYZus{}x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{n}{v\PYZus{}x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{n}{f}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{z}
+                  
+                  
+              \PY{n}{cos\PYZus{}alpha} \PY{o}{=} \PY{n}{j}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{j}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+              \PY{n}{cos\PYZus{}beta} \PY{o}{=} \PY{n}{j}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{j}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+              \PY{n}{cos\PYZus{}gamma} \PY{o}{=} \PY{n}{j}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{j}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{p}{)}
+              
+              \PY{n}{sin2\PYZus{}alpha} \PY{o}{=} \PY{l+m+mf}{1.0}\PY{o}{\PYZhy{}}\PY{n}{cos\PYZus{}alpha}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+              \PY{n}{sin2\PYZus{}beta} \PY{o}{=} \PY{l+m+mf}{1.0}\PY{o}{\PYZhy{}}\PY{n}{cos\PYZus{}beta}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+              \PY{n}{sin2\PYZus{}gamma} \PY{o}{=} \PY{l+m+mf}{1.0}\PY{o}{\PYZhy{}}\PY{n}{cos\PYZus{}gamma}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+              
+              \PY{n}{a2} \PY{o}{=} \PY{n}{a}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+              \PY{n}{b2} \PY{o}{=} \PY{n}{b}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+              \PY{n}{c2} \PY{o}{=} \PY{n}{c}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+              
+              \PY{n}{G} \PY{o}{=} \PY{n}{c2}\PY{o}{*}\PY{p}{(}\PY{n}{c2}\PY{o}{*}\PY{n}{sin2\PYZus{}beta} \PY{o}{\PYZhy{}} \PY{n}{b2}\PY{o}{*}\PY{n}{sin2\PYZus{}gamma}\PY{p}{)}
+              \PY{n}{H} \PY{o}{=} \PY{n}{b2}\PY{o}{*}\PY{p}{(}\PY{n}{b2}\PY{o}{\PYZhy{}}\PY{n}{a2}\PY{p}{)}\PY{o}{*}\PY{n}{sin2\PYZus{}gamma} \PY{o}{+} \PY{n}{c2}\PY{o}{*}\PY{p}{(}\PY{n}{c2}\PY{o}{+}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{a2}\PY{p}{)}\PY{o}{*}\PY{n}{sin2\PYZus{}beta} \PY{o}{+} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{b2}\PY{o}{*}\PY{n}{c2}\PY{o}{*}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{+}\PY{n}{cos\PYZus{}alpha}\PY{o}{*}\PY{n}{cos\PYZus{}beta}\PY{o}{*}\PY{n}{cos\PYZus{}gamma}\PY{p}{)}
+              \PY{n}{I} \PY{o}{=} \PY{n}{b2}\PY{o}{*}\PY{p}{(}\PY{n}{b2}\PY{o}{\PYZhy{}}\PY{n}{c2}\PY{p}{)}\PY{o}{*}\PY{n}{sin2\PYZus{}alpha} \PY{o}{+} \PY{n}{a2}\PY{o}{*}\PY{p}{(}\PY{n}{a2}\PY{o}{+}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{c2}\PY{p}{)}\PY{o}{*}\PY{n}{sin2\PYZus{}beta} \PY{o}{+} \PY{l+m+mi}{2}\PY{o}{*}\PY{n}{a2}\PY{o}{*}\PY{n}{b2}\PY{o}{*}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{+}\PY{n}{cos\PYZus{}alpha}\PY{o}{*}\PY{n}{cos\PYZus{}beta}\PY{o}{*}\PY{n}{cos\PYZus{}gamma}\PY{p}{)}
+              \PY{n}{J} \PY{o}{=} \PY{n}{a2}\PY{o}{*}\PY{p}{(}\PY{n}{a2}\PY{o}{*}\PY{n}{sin2\PYZus{}beta}\PY{o}{\PYZhy{}}\PY{n}{b2}\PY{o}{*}\PY{n}{sin2\PYZus{}alpha}\PY{p}{)}
+              
+              \PY{n}{eq} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{G}\PY{p}{,} \PY{n}{H}\PY{p}{,} \PY{n}{I}\PY{p}{,} \PY{n}{J}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}
+              \PY{n}{lambdas} \PY{o}{=} \PY{k+kc}{None}
+              \PY{k}{try}\PY{p}{:}
+                  \PY{n}{lambdas} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{roots}\PY{p}{(}\PY{n}{eq}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+              \PY{k}{except} \PY{n+ne}{ValueError}\PY{p}{:}
+                  \PY{n}{P} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{ones}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{bad} \PY{o}{=} \PY{l+m+mi}{1}
+                  \PY{k}{return} \PY{n}{P}\PY{p}{,} \PY{n}{bad}
+              
+          
+              \PY{k}{if} \PY{n}{lambdas} \PY{o+ow}{is} \PY{k+kc}{None}\PY{p}{:}
+                  \PY{n}{bad} \PY{o}{=} \PY{l+m+mi}{1}
+                  \PY{k}{return} \PY{n}{P}\PY{p}{,} \PY{n}{bad}
+                  
+              \PY{n}{spos} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{k}{while} \PY{k+kc}{True}\PY{p}{:}
+                  \PY{n}{flag} \PY{o}{=} \PY{l+m+mi}{0}
+                  \PY{n}{lambda0} \PY{o}{=} \PY{l+m+mi}{0}
+                  \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{n}{spos}\PY{p}{,}\PY{n}{lambdas}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                      \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{isreal}\PY{p}{(}\PY{n}{lambdas}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                          \PY{n}{lambda0} \PY{o}{=} \PY{n}{lambdas}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+                          \PY{n}{flag} \PY{o}{=} \PY{l+m+mi}{1}
+                          \PY{n}{spos} \PY{o}{=} \PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}
+                          \PY{k}{break}
+                          
+                  \PY{k}{if} \PY{o+ow}{not} \PY{n}{flag}\PY{p}{:}
+                      \PY{n}{bad} \PY{o}{=} \PY{l+m+mi}{1}
+                      \PY{k}{return} \PY{n}{P}\PY{p}{,} \PY{n}{bad}
+                  
+                  \PY{n}{A} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{+}\PY{n}{lambda0}
+                  \PY{n}{B} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{cos\PYZus{}alpha}
+                  \PY{n}{C} \PY{o}{=} \PY{p}{(}\PY{n}{b2}\PY{o}{\PYZhy{}}\PY{n}{a2}\PY{p}{)}\PY{o}{/}\PY{n}{b2} \PY{o}{\PYZhy{}} \PY{n}{lambda0}\PY{o}{*}\PY{n}{c2}\PY{o}{/}\PY{n}{b2}
+                  \PY{n}{D} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{lambda0}\PY{o}{*}\PY{n}{cos\PYZus{}gamma}
+                  \PY{n}{E} \PY{o}{=} \PY{p}{(}\PY{n}{a2}\PY{o}{/}\PY{n}{b2} \PY{o}{+} \PY{n}{lambda0}\PY{o}{*}\PY{n}{c2}\PY{o}{/}\PY{n}{b2}\PY{p}{)}\PY{o}{*}\PY{n}{cos\PYZus{}beta}
+                  \PY{n}{F} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{a2}\PY{o}{/}\PY{n}{b2} \PY{o}{+} \PY{n}{lambda0}\PY{o}{*}\PY{p}{(}\PY{n}{b2}\PY{o}{\PYZhy{}}\PY{n}{c2}\PY{p}{)}\PY{o}{/}\PY{n}{b2}
+                  
+                  \PY{n}{p} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{B}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{A}\PY{o}{*}\PY{n}{C}\PY{p}{)}
+                  \PY{n}{q} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sign}\PY{p}{(}\PY{n}{B}\PY{o}{*}\PY{n}{E} \PY{o}{\PYZhy{}} \PY{n}{C}\PY{o}{*}\PY{n}{D}\PY{p}{)}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{E}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{\PYZhy{}}\PY{n}{C}\PY{o}{*}\PY{n}{F}\PY{p}{)}
+          
+                  
+                  \PY{n}{z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{n}{B}\PY{o}{+}\PY{n}{p}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{B}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}
+                  \PY{n}{m} \PY{o}{=} \PY{l+m+mf}{1.0}\PY{o}{/}\PY{n}{C}\PY{o}{*}\PY{n}{z}
+                  \PY{n}{z} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{n}{E}\PY{o}{+}\PY{n}{q}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{E}\PY{o}{\PYZhy{}}\PY{n}{q}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}
+                  \PY{n}{n} \PY{o}{=} \PY{l+m+mf}{1.0}\PY{o}{/}\PY{n}{C}\PY{o}{*}\PY{n}{z}
+          
+                  \PY{n}{A11} \PY{o}{=} \PY{n}{b2}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{n}{m}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{c2}
+                  \PY{n}{B11} \PY{o}{=} \PY{n}{c2}\PY{o}{*}\PY{p}{(}\PY{n}{cos\PYZus{}beta}\PY{o}{\PYZhy{}}\PY{n}{n}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{n}{m}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{b2}\PY{o}{*}\PY{n}{cos\PYZus{}gamma}
+                  \PY{n}{C11} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{c2}\PY{o}{*}\PY{p}{(}\PY{n}{n}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{c2}\PY{o}{*}\PY{n}{n}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{cos\PYZus{}beta}\PY{o}{+}\PY{n}{b2}\PY{o}{\PYZhy{}}\PY{n}{c2}
+                  \PY{n}{ularge1} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{sign}\PY{p}{(}\PY{n}{B11}\PY{p}{)}\PY{o}{/}\PY{n}{A11}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{B11}\PY{p}{)} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{B11}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{\PYZhy{}} \PY{n}{A11}\PY{o}{*}\PY{n}{C11}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{usmall1} \PY{o}{=} \PY{n}{C11}\PY{o}{/}\PY{p}{(}\PY{n}{A11}\PY{o}{*}\PY{n}{ularge1}\PY{p}{)}
+                  \PY{n}{vlarge1} \PY{o}{=} \PY{n}{ularge1}\PY{o}{*}\PY{n}{m}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{+}\PY{n}{n}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                  \PY{n}{vsmall1} \PY{o}{=} \PY{n}{usmall1}\PY{o}{*}\PY{n}{m}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{+}\PY{n}{n}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                  
+                  \PY{n}{A12} \PY{o}{=} \PY{n}{b2}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{n}{m}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{*}\PY{n}{c2}
+                  \PY{n}{B12} \PY{o}{=} \PY{n}{c2}\PY{o}{*}\PY{p}{(}\PY{n}{cos\PYZus{}beta}\PY{o}{\PYZhy{}}\PY{n}{n}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}\PY{o}{*}\PY{n}{m}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{b2}\PY{o}{*}\PY{n}{cos\PYZus{}gamma}
+                  \PY{n}{C12} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{n}{c2}\PY{o}{*}\PY{p}{(}\PY{n}{n}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{c2}\PY{o}{*}\PY{n}{n}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{cos\PYZus{}beta}\PY{o}{+}\PY{n}{b2}\PY{o}{\PYZhy{}}\PY{n}{c2}
+                  \PY{n}{ularge2} \PY{o}{=} \PY{p}{(}\PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{sign}\PY{p}{(}\PY{n}{B12}\PY{p}{)}\PY{o}{/}\PY{n}{A12}\PY{p}{)}\PY{o}{*}\PY{p}{(}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{B12}\PY{p}{)}\PY{o}{+}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{B12}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{\PYZhy{}}\PY{n}{A12}\PY{o}{*}\PY{n}{C12}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{usmall2} \PY{o}{=} \PY{n}{C12}\PY{o}{/}\PY{p}{(}\PY{n}{A12}\PY{o}{*}\PY{n}{ularge2}\PY{p}{)}
+                  \PY{n}{vlarge2} \PY{o}{=} \PY{n}{ularge2}\PY{o}{*}\PY{n}{m}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n}{n}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                  \PY{n}{vsmall2} \PY{o}{=} \PY{n}{usmall2}\PY{o}{*}\PY{n}{m}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{+}\PY{n}{n}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                  
+                  \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{isreal}\PY{p}{(}\PY{n}{ularge1}\PY{p}{)} \PY{o+ow}{or} \PY{n}{np}\PY{o}{.}\PY{n}{isreal}\PY{p}{(}\PY{n}{usmall1}\PY{p}{)} \PY{o+ow}{or} \PY{n}{np}\PY{o}{.}\PY{n}{isreal}\PY{p}{(}\PY{n}{ularge2}\PY{p}{)} \PY{o+ow}{or} \PY{n}{np}\PY{o}{.}\PY{n}{isreal}\PY{p}{(}\PY{n}{usmall2}\PY{p}{)}\PY{p}{:}
+                      \PY{k}{break}
+                      
+              \PY{n}{u\PYZus{}values} \PY{o}{=} \PY{p}{[}\PY{n}{ularge1}\PY{p}{,} \PY{n}{usmall1}\PY{p}{,} \PY{n}{ularge2}\PY{p}{,} \PY{n}{usmall2}\PY{p}{]}
+              \PY{n}{v\PYZus{}values} \PY{o}{=} \PY{p}{[}\PY{n}{vlarge1}\PY{p}{,} \PY{n}{vsmall1}\PY{p}{,} \PY{n}{vlarge2}\PY{p}{,} \PY{n}{vsmall2}\PY{p}{]}
+              
+              \PY{n}{P} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{4}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+              \PY{n}{count} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{:}
+                  \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{u\PYZus{}values}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)} \PY{o+ow}{or} \PY{n}{np}\PY{o}{.}\PY{n}{isnan}\PY{p}{(}\PY{n}{v\PYZus{}values}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                      \PY{k}{continue}
+                  \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{isreal}\PY{p}{(}\PY{n}{u\PYZus{}values}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)} \PY{o+ow}{and} \PY{n}{np}\PY{o}{.}\PY{n}{isreal}\PY{p}{(}\PY{n}{v\PYZus{}values}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{:}
+                      \PY{n}{den} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{+}\PY{n}{u\PYZus{}values}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{u\PYZus{}values}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{cos\PYZus{}gamma}
+                      \PY{n}{s1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{c2}\PY{o}{/}\PY{n}{den}\PY{p}{)}
+                      \PY{n}{s2} \PY{o}{=} \PY{n}{u\PYZus{}values}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{s1}
+                      \PY{n}{s3} \PY{o}{=} \PY{n}{v\PYZus{}values}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{*}\PY{n}{s1}
+                      \PY{n}{ss} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{s1}\PY{p}{,}\PY{n}{s2}\PY{p}{,}\PY{n}{s3}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+                      \PY{n}{count}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+                      \PY{n}{P}\PY{p}{[}\PY{n}{count}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{multiply}\PY{p}{(}\PY{n}{j}\PY{p}{,}\PY{n}{ss}\PY{p}{)}
+                  
+              \PY{k}{if} \PY{n}{count}\PY{o}{\PYZgt{}}\PY{o}{=}\PY{l+m+mi}{0}\PY{p}{:}
+                  \PY{n}{P} \PY{o}{=} \PY{n}{P}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{n}{count}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{,}\PY{p}{:}\PY{p}{]}
+              \PY{k}{else}\PY{p}{:}
+                  \PY{n}{bad} \PY{o}{=} \PY{l+m+mi}{1}
+                  \PY{k}{return} \PY{n}{P}\PY{p}{,}\PY{n}{bad}
+          
+              \PY{k}{return} \PY{n}{P}\PY{p}{,} \PY{n}{bad}
+          
+          \PY{k}{def} \PY{n+nf}{umeyama}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{,} \PY{n}{c}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{:}
+              \PY{n}{R} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+              \PY{n}{t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+              \PY{n}{bad} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{n}\PY{p}{,} \PY{n}{m} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{shape}
+              \PY{n}{muX} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+              \PY{n}{muY} \PY{o}{=} \PY{n}{Y}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+              \PY{n}{sigmaX} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{delta} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{muX}
+                  \PY{n}{sigmaX} \PY{o}{=} \PY{n}{sigmaX}\PY{o}{+}\PY{n}{delta}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{delta}\PY{p}{)}
+                              
+              \PY{n}{sigmaX} \PY{o}{/}\PY{o}{=} \PY{n}{n}
+          
+              \PY{n}{l} \PY{o}{=} \PY{n}{muX}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+              \PY{n}{SIGMA} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{l}\PY{p}{,}\PY{n}{l}\PY{p}{)}\PY{p}{)}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{SIGMA} \PY{o}{=} \PY{n}{SIGMA} \PY{o}{+} \PY{p}{(}\PY{n}{Y}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{muY}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{p}{(}\PY{n}{X}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{muX}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+                  
+              \PY{n}{SIGMA} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{n}\PY{o}{*}\PY{n}{SIGMA}
+              \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{matrix\PYZus{}rank}\PY{p}{(}\PY{n}{SIGMA}\PY{p}{)}\PY{o}{\PYZlt{}}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}
+                  \PY{n}{R} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{bad} \PY{o}{=} \PY{l+m+mi}{1}
+                  \PY{k}{return} \PY{n}{R}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{bad}
+              
+              \PY{n}{U}\PY{p}{,} \PY{n}{D}\PY{p}{,} \PY{n}{Vt} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{svd}\PY{p}{(}\PY{n}{SIGMA}\PY{p}{)}
+              \PY{n}{D} \PY{o}{=} \PY{n}{D}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{n}{D}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+          
+              \PY{n}{S} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{n}{l}\PY{p}{)}
+              \PY{k}{if} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{matrix\PYZus{}rank}\PY{p}{(}\PY{n}{SIGMA}\PY{p}{)}\PY{o}{==}\PY{n}{m}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}
+                  \PY{k}{if} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{n}{U}\PY{p}{)}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{det}\PY{p}{(}\PY{n}{Vt}\PY{o}{.}\PY{n}{T}\PY{p}{)}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{\PYZlt{}}\PY{o}{=}\PY{l+m+mf}{0.000001}\PY{p}{:}
+                      \PY{n}{S}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+              
+              \PY{n}{R} \PY{o}{=} \PY{n}{U}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{S}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{Vt}\PY{p}{)}\PY{p}{)}
+              \PY{k}{if} \PY{n}{c}\PY{o}{==}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{:}
+                  \PY{n}{c} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{n}{sigmaX}\PY{p}{)}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{trace}\PY{p}{(}\PY{n}{D}\PY{o}{*}\PY{n}{S}\PY{p}{)}
+              
+              \PY{n}{t} \PY{o}{=} \PY{p}{(}\PY{n}{muY} \PY{o}{\PYZhy{}} \PY{n}{c}\PY{o}{*}\PY{n}{R}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{muX}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+              \PY{k}{return} \PY{n}{R}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{bad}
+              
+          \PY{k}{def} \PY{n+nf}{computeError}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{R}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{K}\PY{p}{)}\PY{p}{:}
+              \PY{n}{m}\PY{p}{,} \PY{n}{n} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{shape}
+              \PY{n}{H} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{matmul}\PY{p}{(}\PY{n}{K}\PY{p}{,}\PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{t}\PY{p}{)}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+              \PY{n}{x\PYZus{}pred} \PY{o}{=} \PY{n}{proj}\PY{p}{(}\PY{n}{H}\PY{p}{,}\PY{n}{X}\PY{p}{)}
+          
+              \PY{n}{errors} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{errors}\PY{p}{[}\PY{n}{i}\PY{p}{]} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{x}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}pred}\PY{p}{[}\PY{p}{:}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+              \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{n}{errors}\PY{p}{)}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}
+          
+          \PY{k}{def} \PY{n+nf}{computeCost}\PY{p}{(}\PY{n}{errors}\PY{p}{,} \PY{n}{tolerance}\PY{p}{)}\PY{p}{:}
+              \PY{n}{n} \PY{o}{=} \PY{n}{errors}\PY{o}{.}\PY{n}{flatten}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+              \PY{n}{cost} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                  \PY{k}{if} \PY{n}{errors}\PY{p}{[}\PY{n}{i}\PY{p}{]}\PY{o}{\PYZlt{}}\PY{o}{=}\PY{n}{tolerance}\PY{p}{:}
+                      \PY{n}{cost}\PY{o}{+}\PY{o}{=}\PY{n}{errors}\PY{p}{[}\PY{n}{i}\PY{p}{]}
+                  \PY{k}{else}\PY{p}{:}
+                      \PY{n}{cost}\PY{o}{+}\PY{o}{=}\PY{n}{tolerance}
+              \PY{k}{return} \PY{n}{cost}
+              
+          \PY{k}{def} \PY{n+nf}{MSAC}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{x\PYZus{}homo}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{K}\PY{p}{,} \PY{n}{threshold}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{tolerance}\PY{p}{,} \PY{n}{seed}\PY{p}{)}\PY{p}{:}
+              \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}your code here\PYZdq{}\PYZdq{}\PYZdq{}}
+              \PY{n}{max\PYZus{}trials} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{inf}
+              \PY{n}{min\PYZus{}cost} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{inf}
+              \PY{n}{trials} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{n}{N} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+              \PY{n}{inlier\PYZus{}pos} \PY{o}{=} \PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{]}
+              \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{seed}\PY{p}{(}\PY{n}{seed}\PY{p}{)}
+              \PY{n}{R} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)} \PY{c+c1}{\PYZsh{} estimated rotation matrix}
+              \PY{n}{t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{T} \PY{c+c1}{\PYZsh{} estimated translation}
+              \PY{n}{inliers} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{choice}\PY{p}{(}\PY{n}{x}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{35}\PY{p}{,}\PY{n}{replace}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}\PY{p}{)}
+              
+              \PY{k}{while}\PY{p}{(}\PY{n}{trials}\PY{o}{\PYZlt{}}\PY{n}{max\PYZus{}trials} \PY{o+ow}{and} \PY{n}{min\PYZus{}cost}\PY{o}{\PYZgt{}}\PY{n}{threshold}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{sampleidx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{random}\PY{o}{.}\PY{n}{choice}\PY{p}{(}\PY{n}{x}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{,}\PY{n}{replace}\PY{o}{=}\PY{k+kc}{False}\PY{p}{)}
+                  \PY{n}{R}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{bad} \PY{o}{=} \PY{n}{computeModel}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{x\PYZus{}homo}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{K}\PY{p}{,} \PY{n}{sampleidx}\PY{p}{)}
+                  \PY{k}{if} \PY{n}{bad}\PY{o}{==}\PY{l+m+mi}{1}\PY{p}{:}
+                      \PY{k}{continue}
+                  \PY{n}{errors} \PY{o}{=} \PY{n}{computeError}\PY{p}{(}\PY{n}{x\PYZus{}homo}\PY{p}{,}\PY{n}{X}\PY{p}{,}\PY{n}{R}\PY{p}{,}\PY{n}{t}\PY{p}{,}\PY{n}{K}\PY{p}{)}
+                  \PY{n}{cost} \PY{o}{=} \PY{n}{computeCost}\PY{p}{(}\PY{n}{errors}\PY{p}{,} \PY{n}{tolerance}\PY{p}{)}
+                  \PY{k}{if} \PY{n}{min\PYZus{}cost}\PY{o}{\PYZgt{}}\PY{n}{cost}\PY{p}{:}
+                      \PY{n}{min\PYZus{}cost} \PY{o}{=} \PY{n}{cost}
+                      \PY{n}{inliers} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{argwhere}\PY{p}{(}\PY{n}{errors}\PY{o}{\PYZlt{}}\PY{n}{tolerance}\PY{p}{)}\PY{o}{.}\PY{n}{ravel}\PY{p}{(}\PY{p}{)}
+                      \PY{n}{w} \PY{o}{=} \PY{n}{inliers}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{/}\PY{n}{N}
+                      \PY{n}{max\PYZus{}trials} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{p}\PY{p}{)}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{w}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{3}\PY{p}{)}
+                  \PY{n}{trials} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{1}
+              
+              \PY{c+c1}{\PYZsh{} indices of inliers (must be sorted)}
+              \PY{n}{inliers} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sort}\PY{p}{(}\PY{n}{inliers}\PY{p}{)}
+              \PY{k}{return} \PY{n}{R}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{inliers}\PY{p}{,} \PY{n}{min\PYZus{}cost}\PY{p}{,} \PY{n}{trials}
+          
+          \PY{c+c1}{\PYZsh{} MSAC hyperparameters (add any additional hyperparameters necessary here. For example p)}
+          \PY{c+c1}{\PYZsh{} You should pass these hyperparameters as additional paramters to MSAC(...)}
+          \PY{n}{max\PYZus{}iters}\PY{o}{=}\PY{l+m+mi}{1}
+          \PY{n}{p} \PY{o}{=} \PY{l+m+mf}{0.99}
+          \PY{n}{threshold} \PY{o}{=} \PY{l+m+mi}{0}
+          \PY{n}{alpha} \PY{o}{=} \PY{l+m+mf}{0.95}
+          \PY{n}{sigma} \PY{o}{=} \PY{l+m+mi}{1}
+          \PY{n}{tolerance} \PY{o}{=} \PY{n}{sigma}\PY{o}{*}\PY{n}{chi2}\PY{o}{.}\PY{n}{ppf}\PY{p}{(}\PY{n}{alpha}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{)}
+          \PY{n}{seed} \PY{o}{=} \PY{l+m+mi}{10}
+          \PY{n}{x\PYZus{}homo} \PY{o}{=} \PY{n}{toHomo}\PY{p}{(}\PY{n}{x}\PY{p}{)}
+          \PY{n}{x\PYZus{}hat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{inv}\PY{p}{(}\PY{n}{K}\PY{p}{)}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{x\PYZus{}homo}\PY{p}{)}
+          
+          \PY{n}{R\PYZus{}MSAC}\PY{p}{,} \PY{n}{t\PYZus{}MSAC}\PY{p}{,} \PY{n}{inliers}\PY{p}{,} \PY{n}{cost\PYZus{}MSAC}\PY{p}{,} \PY{n}{iters\PYZus{}MSAC} \PY{o}{=} \PY{n}{MSAC}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{,} \PY{n}{x\PYZus{}homo}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{K}\PY{p}{,} \PY{n}{threshold}\PY{p}{,} \PY{n}{p}\PY{p}{,} \PY{n}{tolerance}\PY{p}{,} \PY{n}{seed}\PY{p}{)}
+          \PY{n}{displayResults}\PY{p}{(}\PY{n}{R\PYZus{}MSAC}\PY{p}{,} \PY{n}{t\PYZus{}MSAC}\PY{p}{,} \PY{n}{K}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{inliers}\PY{p}{,} \PY{n}{iters\PYZus{}MSAC}\PY{p}{,} \PY{n}{cost\PYZus{}MSAC}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{inliers: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n}{inliers}\PY{p}{)}
+          \PY{n+nb}{print}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{inlier count: }\PY{l+s+s1}{\PYZsq{}}\PY{p}{,} \PY{n+nb}{len}\PY{p}{(}\PY{n}{inliers}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+/usr/local/lib/python3.6/site-packages/ipykernel\_launcher.py:151: ComplexWarning: Casting complex values to real discards the imaginary part
+/usr/local/lib/python3.6/site-packages/ipykernel\_launcher.py:108: RuntimeWarning: invalid value encountered in sqrt
+/usr/local/lib/python3.6/site-packages/ipykernel\_launcher.py:109: RuntimeWarning: invalid value encountered in sqrt
+
+    \end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+R = 
+[[ 0.27228322 -0.69654422  0.66384336]
+ [ 0.67200132 -0.35612627 -0.64929832]
+ [ 0.68867704  0.62289665  0.37111143]]
+t = 
+[[   4.90426621]
+ [   8.6987014 ]
+ [ 175.77242502]]
+cost =  140.387783551
+itterations =  11
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_4_2.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+inliers:  [ 0  1  2  3  4  5  6  7  8  9 10 12 14 15 16 17 18 19 20 21 22 23 24 25 26
+ 27 28 29 30 31 32 33 35 36 37 38 39 40 41 42 43 45 46 47 49]
+inlier count:  45
+
+    \end{Verbatim}
+
+    \subsection{Problem 2 (Programing): Estimation of the camera pose -
+Linear Estimate (30
+points)}\label{problem-2-programing-estimation-of-the-camera-pose---linear-estimate-30-points}
+
+Estimate the normalized camera projection matrix
+\(\hat{\boldsymbol{P}}_\text{linear} = [\boldsymbol{R}_\text{linear} |  \boldsymbol{t}_\text{linear}]\)
+from the resulting set of inlier correspondences using the linear
+estimation method (based on the EPnP method) described in lecture.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}168}]:} \PY{k}{def} \PY{n+nf}{EPnP}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{K}\PY{p}{,} \PY{n}{x\PYZus{}full}\PY{p}{,} \PY{n}{X\PYZus{}full}\PY{p}{)}\PY{p}{:}
+              \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}your code here\PYZdq{}\PYZdq{}\PYZdq{}}
+              \PY{n}{R} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{)} \PY{c+c1}{\PYZsh{} estimated rotation matrix}
+              \PY{n}{t} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{100}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{T} \PY{c+c1}{\PYZsh{} estimated translation}
+              \PY{n}{cost} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{inf} \PY{c+c1}{\PYZsh{} linear cost}
+              
+              \PY{n}{muX} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{n}{X}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+              \PY{n}{n} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+              \PY{n}{SIGMAX} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{SIGMAX} \PY{o}{+}\PY{o}{=} \PY{p}{(}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{muX}\PY{p}{)}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{p}{(}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{muX}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+                  
+              \PY{n}{SIGMAX} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{n}{n}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{SIGMAX}
+              
+              \PY{n}{U}\PY{p}{,} \PY{n}{D}\PY{p}{,} \PY{n}{Vt} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{svd}\PY{p}{(}\PY{n}{SIGMAX}\PY{p}{)}
+              \PY{n}{V} \PY{o}{=} \PY{n}{Vt}\PY{o}{.}\PY{n}{T}
+              \PY{n}{sigmaX} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{trace}\PY{p}{(}\PY{n}{SIGMAX}\PY{p}{)}
+              \PY{n}{s} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{sigmaX}\PY{o}{/}\PY{l+m+mi}{3}\PY{p}{)}
+              \PY{n}{C1} \PY{o}{=} \PY{n}{muX}
+              \PY{n}{C2} \PY{o}{=} \PY{n}{s}\PY{o}{*}\PY{n}{V}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{+}\PY{n}{muX}
+              \PY{n}{C3} \PY{o}{=} \PY{n}{s}\PY{o}{*}\PY{n}{V}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{+}\PY{n}{muX}
+              \PY{n}{C4} \PY{o}{=} \PY{n}{s}\PY{o}{*}\PY{n}{V}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{+}\PY{n}{muX}
+              
+              
+              \PY{n}{Xcam} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+              \PY{n}{LX} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{n}\PY{p}{,}\PY{l+m+mi}{12}\PY{p}{)}\PY{p}{)}
+              \PY{n}{alphas} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{n}{n}\PY{p}{,}\PY{l+m+mi}{4}\PY{p}{)}\PY{p}{)}
+              \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{alphais} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{s}\PY{p}{)}\PY{o}{*}\PY{n}{Vt}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{C1}\PY{p}{)}
+                  \PY{n}{a1} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{alphais}\PY{p}{)}
+                  \PY{n}{a2} \PY{o}{=} \PY{n}{alphais}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}
+                  \PY{n}{a3} \PY{o}{=} \PY{n}{alphais}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+                  \PY{n}{a4} \PY{o}{=} \PY{n}{alphais}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}
+                  \PY{n}{alphas}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{a1}\PY{p}{,}\PY{n}{a2}\PY{p}{,}\PY{n}{a3}\PY{p}{,}\PY{n}{a4}\PY{p}{]}
+                  \PY{n}{xi} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{/}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{]}
+                  \PY{n}{yi} \PY{o}{=} \PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{/}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{]}
+                  \PY{n}{LX}\PY{p}{[}\PY{n}{j}\PY{p}{,}\PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{n}{a1}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{a1}\PY{o}{*}\PY{n}{xi}\PY{p}{,} \PY{n}{a2}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{a2}\PY{o}{*}\PY{n}{xi}\PY{p}{,} \PY{n}{a3}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{a3}\PY{o}{*}\PY{n}{xi}\PY{p}{,} \PY{n}{a4}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{a4}\PY{o}{*}\PY{n}{xi}\PY{p}{]}
+                  \PY{n}{LX}\PY{p}{[}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{n}{a1}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{a1}\PY{o}{*}\PY{n}{yi}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{a2}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{a2}\PY{o}{*}\PY{n}{yi}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{a3}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{a3}\PY{o}{*}\PY{n}{yi}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{n}{a4}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{a4}\PY{o}{*}\PY{n}{yi}\PY{p}{]}
+                  \PY{n}{j} \PY{o}{+}\PY{o}{=} \PY{l+m+mi}{2}
+              
+              \PY{n}{\PYZus{}}\PY{p}{,}\PY{n}{\PYZus{}}\PY{p}{,}\PY{n}{Vt} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{svd}\PY{p}{(}\PY{n}{LX}\PY{p}{)}
+              \PY{n}{M} \PY{o}{=} \PY{n}{Vt}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{p}{:}\PY{p}{]}
+              \PY{n}{c0} \PY{o}{=} \PY{n}{M}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}
+              \PY{n}{c1} \PY{o}{=} \PY{n}{M}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{:}\PY{l+m+mi}{6}\PY{p}{]}
+              \PY{n}{c2} \PY{o}{=} \PY{n}{M}\PY{p}{[}\PY{l+m+mi}{6}\PY{p}{:}\PY{l+m+mi}{9}\PY{p}{]}
+              \PY{n}{c3} \PY{o}{=} \PY{n}{M}\PY{p}{[}\PY{l+m+mi}{9}\PY{p}{:}\PY{l+m+mi}{12}\PY{p}{]}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{Xcam}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{p}{:}\PY{p}{]} \PY{o}{=} \PY{n}{alphas}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{n}{c0} \PY{o}{+} \PY{n}{alphas}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{*}\PY{n}{c1} \PY{o}{+} \PY{n}{alphas}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{*}\PY{n}{c2} \PY{o}{+} \PY{n}{alphas}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{]}\PY{o}{*}\PY{n}{c3}
+                  
+              \PY{n}{muXcam} \PY{o}{=} \PY{n}{Xcam}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+              \PY{n}{SIGMAXcam} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{SIGMAXcam} \PY{o}{+}\PY{o}{=} \PY{p}{(}\PY{n}{Xcam}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{muXcam}\PY{p}{)}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{p}{(}\PY{n}{Xcam}\PY{p}{[}\PY{n}{i}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{n}{muXcam}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{p}{)}
+                  
+              \PY{n}{SIGMAXcam} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{p}{(}\PY{n}{n}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{*}\PY{n}{SIGMAXcam}
+              \PY{n}{sigmaXcam} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{trace}\PY{p}{(}\PY{n}{SIGMAXcam}\PY{p}{)}
+              
+              \PY{n}{beta} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{sigmaX}\PY{o}{/}\PY{n}{sigmaXcam}\PY{p}{)}
+              \PY{k}{if}\PY{p}{(}\PY{n}{muXcam}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{\PYZlt{}}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{beta} \PY{o}{=} \PY{n}{beta}\PY{o}{*}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+                  
+              \PY{n}{Xcam} \PY{o}{=} \PY{n}{beta}\PY{o}{*}\PY{n}{Xcam}
+              \PY{n}{R}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{bad} \PY{o}{=} \PY{n}{umeyama}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{Xcam}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{)}
+              \PY{n}{errors} \PY{o}{=} \PY{n}{computeError}\PY{p}{(}\PY{n}{x\PYZus{}full}\PY{p}{,}\PY{n}{X\PYZus{}full}\PY{p}{,}\PY{n}{R}\PY{p}{,}\PY{n}{t}\PY{p}{,}\PY{n}{K}\PY{p}{)}
+              \PY{n}{cost} \PY{o}{=} \PY{n}{computeCost}\PY{p}{(}\PY{n}{errors}\PY{p}{,} \PY{n}{tolerance}\PY{p}{)}
+              \PY{k}{return} \PY{n}{R}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{cost}
+          
+          \PY{n}{R\PYZus{}EPnP}\PY{p}{,} \PY{n}{t\PYZus{}EPnP}\PY{p}{,} \PY{n}{cost\PYZus{}EPnP} \PY{o}{=} \PY{n}{EPnP}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{inliers}\PY{p}{]}\PY{p}{,} \PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{inliers}\PY{p}{]}\PY{p}{,} \PY{n}{K}\PY{p}{,} \PY{n}{x\PYZus{}homo}\PY{p}{,} \PY{n}{X}\PY{p}{)}
+          \PY{n}{displayResults}\PY{p}{(}\PY{n}{R\PYZus{}EPnP}\PY{p}{,} \PY{n}{t\PYZus{}EPnP}\PY{p}{,} \PY{n}{K}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{inliers}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{cost\PYZus{}EPnP}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+R = 
+[[ 0.27810566 -0.69096762  0.66724882]
+ [ 0.66315912 -0.36441811 -0.65377322]
+ [ 0.69489368  0.62431017  0.35687474]]
+t = 
+[[   5.55031212]
+ [   7.74045934]
+ [ 175.8968773 ]]
+cost =  95.5030440477
+itterations =  1
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_6_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \subsection{Problem 3 (Programing): Estimation of the camera pose -
+Nonlinear Estimate (30
+points)}\label{problem-3-programing-estimation-of-the-camera-pose---nonlinear-estimate-30-points}
+
+Use \(\boldsymbol{R}_\text{linear}\) and
+\(\boldsymbol{t}_\text{linear}\) as an initial estimate to an iterative
+estimation method, specifically the Levenberg-Marquardt algorithm, to
+determine the Maximum Likelihood estimate of the camera pose that
+minimizes the projection error under the normalized camera projection
+matrix \(\hat{\boldsymbol{P}} =  [\boldsymbol{R} | \boldsymbol{t}]\).
+You must parameterize the camera rotation using the angle-axis
+representation \(\boldsymbol{\omega}\) (where
+\([\boldsymbol{\omega}]_\times = \ln \boldsymbol{R}\)) of a 3D rotation,
+which is a 3-vector.
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}173}]:} \PY{k}{def} \PY{n+nf}{mysinc}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{:}
+              \PY{k}{if} \PY{n}{x}\PY{o}{==}\PY{l+m+mi}{0}\PY{p}{:}
+                  \PY{k}{return} \PY{l+m+mf}{1.0}
+              \PY{k}{else}\PY{p}{:}
+                  \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{o}{/}\PY{n}{x}
+              
+          \PY{k}{def} \PY{n+nf}{calcError}\PY{p}{(}\PY{n}{x\PYZus{}meas}\PY{p}{,} \PY{n}{x\PYZus{}est}\PY{p}{)}\PY{p}{:}
+              \PY{k}{return} \PY{n}{x\PYZus{}meas}\PY{o}{\PYZhy{}}\PY{n}{x\PYZus{}est}
+          
+          \PY{k}{def} \PY{n+nf}{calcCost}\PY{p}{(}\PY{n}{error}\PY{p}{,} \PY{n}{cov\PYZus{}inv}\PY{p}{)}\PY{p}{:}
+              \PY{k}{return} \PY{n}{error}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{cov\PYZus{}inv}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{error}\PY{p}{)}\PY{p}{)}
+              
+          \PY{k}{def} \PY{n+nf}{R2w}\PY{p}{(}\PY{n}{R}\PY{p}{)}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{} given a rotation matrix R return the angle\PYZhy{}axis representation}
+              \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}your code here\PYZdq{}\PYZdq{}\PYZdq{}}
+              \PY{n}{\PYZus{}}\PY{p}{,}\PY{n}{\PYZus{}}\PY{p}{,}\PY{n}{Vrott} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{svd}\PY{p}{(}\PY{n}{R}\PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{p}{)}
+              \PY{n}{Vrot} \PY{o}{=} \PY{n}{Vrott}\PY{o}{.}\PY{n}{T}
+              \PY{n}{V} \PY{o}{=} \PY{n}{Vrot}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+              \PY{n}{V\PYZus{}hat} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{R}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{R}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{R}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{R}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{R}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]} \PY{o}{\PYZhy{}} \PY{n}{R}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{T}
+              \PY{n}{sin\PYZus{}theta} \PY{o}{=} \PY{n}{V}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{V\PYZus{}hat}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+              \PY{n}{cos\PYZus{}theta} \PY{o}{=} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{trace}\PY{p}{(}\PY{n}{R}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{/}\PY{l+m+mi}{2}
+              \PY{n}{theta} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{arctan2}\PY{p}{(}\PY{n}{sin\PYZus{}theta}\PY{p}{,} \PY{n}{cos\PYZus{}theta}\PY{p}{)}
+              \PY{n}{w} \PY{o}{=} \PY{n}{theta}\PY{o}{*}\PY{n}{V}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{V}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+              \PY{k}{if} \PY{n}{theta}\PY{o}{\PYZgt{}}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{:}
+                  \PY{n}{w} \PY{o}{=} \PY{n}{w}\PY{o}{*}\PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{o}{/}\PY{n}{theta}\PY{p}{)}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{ceil}\PY{p}{(}\PY{p}{(}\PY{n}{theta}\PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{pi}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+              \PY{k}{return} \PY{n}{w}
+          
+          \PY{k}{def} \PY{n+nf}{w2R}\PY{p}{(}\PY{n}{w}\PY{p}{)}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{} given the angle\PYZhy{}axis representation w return the rotation matrix}
+              \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}your code here\PYZdq{}\PYZdq{}\PYZdq{}}
+              \PY{n}{wx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{w}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{w}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{n}{w}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{w}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{,} \PY{p}{[}\PY{o}{\PYZhy{}}\PY{n}{w}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{w}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+              \PY{k}{return} \PY{n}{expm}\PY{p}{(}\PY{n}{wx}\PY{p}{)}
+          
+          \PY{k}{def} \PY{n+nf}{getH}\PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{t}\PY{p}{)}\PY{p}{:}
+              \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{R}\PY{p}{,}\PY{n}{t}\PY{p}{)}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+          
+          \PY{k}{def} \PY{n+nf}{toP}\PY{p}{(}\PY{n}{w}\PY{p}{,}\PY{n}{t}\PY{p}{)}\PY{p}{:}
+              \PY{k}{return} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{w}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{w}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{w}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{t}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{]}\PY{p}{)}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{)}
+          
+          \PY{k}{def} \PY{n+nf}{fromP}\PY{p}{(}\PY{n}{p}\PY{p}{)}\PY{p}{:}
+              \PY{n}{w} \PY{o}{=} \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{:}\PY{l+m+mi}{3}\PY{p}{]}
+              \PY{n}{t} \PY{o}{=} \PY{n}{p}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{:}\PY{l+m+mi}{6}\PY{p}{]}
+              \PY{k}{return} \PY{n}{w}\PY{p}{,}\PY{n}{t}
+          
+          \PY{k}{def} \PY{n+nf}{jacobian}\PY{p}{(}\PY{n}{x\PYZus{}hat}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{P}\PY{p}{)}\PY{p}{:}
+              \PY{n}{n} \PY{o}{=} \PY{n}{X}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}
+              \PY{n}{J} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{zeros}\PY{p}{(}\PY{p}{(}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{n}\PY{p}{,}\PY{l+m+mi}{6}\PY{p}{)}\PY{p}{)}
+              \PY{n}{w}\PY{p}{,} \PY{n}{t} \PY{o}{=} \PY{n}{fromP}\PY{p}{(}\PY{n}{P}\PY{p}{)}
+              \PY{n}{theta} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{w}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+              \PY{n}{s} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{1}\PY{o}{\PYZhy{}}\PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{theta}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{theta}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+              \PY{n}{wx} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{w}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{w}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{n}{w}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{w}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{o}{\PYZhy{}}\PY{n}{w}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{w}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+              \PY{n}{j} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{k}{for} \PY{n}{i} \PY{o+ow}{in} \PY{n+nb}{range}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{n}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{x} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{/}\PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{/}\PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                  \PY{n}{m1}\PY{o}{=}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{1}\PY{o}{/}\PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{/}\PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{]}\PY{p}{,}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{x}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{o}{/}\PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                  \PY{n}{ax} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{X}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{X}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{]}\PY{p}{,}\PY{p}{[} \PY{n}{X}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{X}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{]}\PY{p}{,}\PY{p}{[} \PY{o}{\PYZhy{}}\PY{n}{X}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{n}{X}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                  \PY{k}{if} \PY{n+nb}{abs}\PY{p}{(}\PY{n}{theta}\PY{p}{)}\PY{o}{\PYZlt{}}\PY{l+m+mf}{0.00001}\PY{p}{:}
+                      \PY{n}{m2}\PY{o}{=}\PY{n}{ax}
+                  \PY{k}{else}\PY{p}{:}
+                      \PY{n}{wca} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{cross}\PY{p}{(}\PY{n}{w}\PY{o}{.}\PY{n}{T}\PY{p}{,}\PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{i}\PY{p}{]}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{T}
+                      \PY{n}{wcax} \PY{o}{=} \PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{wca}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{n}{wca}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{]}\PY{p}{,}\PY{p}{[} \PY{n}{wca}\PY{p}{[}\PY{l+m+mi}{2}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{,} \PY{o}{\PYZhy{}}\PY{n}{wca}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{,}\PY{p}{[} \PY{o}{\PYZhy{}}\PY{n}{wca}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{,} \PY{n}{wca}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,} \PY{l+m+mi}{0}\PY{p}{]}\PY{p}{]}\PY{p}{)}
+                      \PY{n}{dtw} \PY{o}{=} \PY{n}{w}\PY{o}{.}\PY{n}{T}\PY{o}{/}\PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{sum}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{square}\PY{p}{(}\PY{n}{w}\PY{p}{)}\PY{p}{)}\PY{p}{)}
+                      \PY{n}{dst} \PY{o}{=} \PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{theta}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{theta}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)} \PY{o}{\PYZhy{}}\PY{l+m+mi}{2}\PY{o}{*}\PY{n}{s}\PY{o}{/}\PY{n}{theta}
+                      \PY{n}{term2} \PY{o}{=} \PY{n}{wca}\PY{o}{*}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{theta}\PY{p}{)}\PY{o}{/}\PY{n}{theta} \PY{o}{\PYZhy{}} \PY{n}{np}\PY{o}{.}\PY{n}{sin}\PY{p}{(}\PY{n}{theta}\PY{p}{)}\PY{o}{/}\PY{p}{(}\PY{n}{theta}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{n}{dtw}
+                      \PY{n}{m2} \PY{o}{=} \PY{n}{mysinc}\PY{p}{(}\PY{n}{theta}\PY{p}{)}\PY{o}{*}\PY{n}{ax} \PY{o}{+} \PY{n}{term2} \PY{o}{+} \PY{n}{np}\PY{o}{.}\PY{n}{cross}\PY{p}{(}\PY{n}{w}\PY{o}{.}\PY{n}{T}\PY{p}{,} \PY{n}{wca}\PY{o}{.}\PY{n}{T}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{dst}\PY{o}{*}\PY{n}{dtw}\PY{p}{)} \PY{o}{+} \PY{n}{s}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{l+m+mi}{3}\PY{p}{,}\PY{l+m+mi}{3}\PY{p}{)}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{p}{(}\PY{n}{wx}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{ax}\PY{p}{)}\PY{o}{+}\PY{n}{wcax}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{A} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{concatenate}\PY{p}{(}\PY{p}{(}\PY{n}{m1}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{m2}\PY{p}{)}\PY{p}{,}\PY{n}{m1}\PY{p}{)}\PY{p}{,}\PY{n}{axis}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+                  \PY{n}{J}\PY{p}{[}\PY{n}{j}\PY{p}{:}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{2}\PY{p}{,}\PY{p}{:}\PY{p}{]}\PY{o}{=}\PY{n}{A}
+                  \PY{n}{j}\PY{o}{=}\PY{n}{j}\PY{o}{+}\PY{l+m+mi}{2}
+              \PY{k}{return} \PY{n}{J}
+          
+          \PY{c+c1}{\PYZsh{} use linear estimate as an initalization for LM}
+          \PY{n}{w\PYZus{}LM} \PY{o}{=} \PY{n}{R2w}\PY{p}{(}\PY{n}{R\PYZus{}EPnP}\PY{p}{)}
+          \PY{n}{t\PYZus{}LM} \PY{o}{=} \PY{n}{t\PYZus{}EPnP}
+          
+          \PY{n}{x\PYZus{}hatIn} \PY{o}{=} \PY{n}{x\PYZus{}hat}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{inliers}\PY{p}{]}
+          \PY{n}{x\PYZus{}normhat} \PY{o}{=} \PY{n}{fromHomo}\PY{p}{(}\PY{n}{x\PYZus{}hatIn}\PY{p}{)}
+          \PY{n}{X\PYZus{}In} \PY{o}{=} \PY{n}{X}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{n}{inliers}\PY{p}{]}
+          
+          \PY{k}{def} \PY{n+nf}{LMstep}\PY{p}{(}\PY{n}{w}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{K}\PY{p}{,} \PY{n}{l}\PY{p}{,} \PY{n}{v}\PY{p}{)}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{} inputs:}
+              \PY{c+c1}{\PYZsh{} w current estimate of rotation in angle\PYZhy{}axis representation}
+              \PY{c+c1}{\PYZsh{} t current estimate of t}
+              \PY{c+c1}{\PYZsh{} x 2D points}
+              \PY{c+c1}{\PYZsh{} X 3D points}
+              \PY{c+c1}{\PYZsh{} K camera calibration matrix }
+              \PY{c+c1}{\PYZsh{} l LM lambda parameter}
+              \PY{c+c1}{\PYZsh{} v LM change of lambda parameter}
+              \PY{c+c1}{\PYZsh{} output:}
+              \PY{c+c1}{\PYZsh{} R updated by a single LM step}
+              \PY{c+c1}{\PYZsh{} t updated by a single LM step}
+              \PY{c+c1}{\PYZsh{} cost}
+              \PY{c+c1}{\PYZsh{} l accepted lambda parameter}
+              
+              \PY{l+s+sd}{\PYZdq{}\PYZdq{}\PYZdq{}your code here\PYZdq{}\PYZdq{}\PYZdq{}}
+              \PY{n}{counter} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{k}{while} \PY{n}{counter}\PY{o}{\PYZlt{}}\PY{l+m+mi}{1000}\PY{p}{:}
+                  \PY{n}{x\PYZus{}meas} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{T}
+                  \PY{n}{scale} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{K}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+                  \PY{n}{sigma} \PY{o}{=} \PY{n}{scale}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{n}{x\PYZus{}meas}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+                  \PY{n}{cov\PYZus{}inv} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{inv}\PY{p}{(}\PY{n}{sigma}\PY{p}{)}
+          
+                  \PY{n}{p\PYZus{}hat} \PY{o}{=} \PY{n}{getH}\PY{p}{(}\PY{n}{w2R}\PY{p}{(}\PY{n}{w}\PY{p}{)}\PY{p}{,}\PY{n}{t}\PY{p}{)}
+                  \PY{n}{x\PYZus{}est} \PY{o}{=} \PY{n}{proj}\PY{p}{(}\PY{n}{p\PYZus{}hat}\PY{p}{,}\PY{n}{fromHomo}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{T}
+                  \PY{n}{err} \PY{o}{=} \PY{n}{calcError}\PY{p}{(}\PY{n}{x\PYZus{}meas}\PY{p}{,}\PY{n}{x\PYZus{}est}\PY{p}{)}
+                  \PY{n}{cost} \PY{o}{=} \PY{n}{calcCost}\PY{p}{(}\PY{n}{err}\PY{p}{,}\PY{n}{cov\PYZus{}inv}\PY{p}{)}
+          
+                  \PY{n}{x\PYZus{}predhat} \PY{o}{=} \PY{n}{p\PYZus{}hat}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{X}\PY{p}{)}
+                  \PY{n}{J} \PY{o}{=} \PY{n}{jacobian}\PY{p}{(}\PY{n}{x\PYZus{}predhat}\PY{p}{,} \PY{n}{fromHomo}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{,} \PY{n}{toP}\PY{p}{(}\PY{n}{w}\PY{p}{,}\PY{n}{t}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{subterm1} \PY{o}{=} \PY{n}{J}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{cov\PYZus{}inv}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{J}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{term1} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{inv}\PY{p}{(}\PY{n}{subterm1}\PY{o}{+}\PY{n}{l}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{n}{subterm1}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{term2} \PY{o}{=} \PY{n}{J}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{cov\PYZus{}inv}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{err}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{delta} \PY{o}{=} \PY{n}{term1}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{term2}\PY{p}{)}
+                  
+                  \PY{n}{P\PYZus{}new} \PY{o}{=} \PY{n}{toP}\PY{p}{(}\PY{n}{w}\PY{p}{,}\PY{n}{t}\PY{p}{)}\PY{o}{+}\PY{n}{delta}
+                  \PY{n}{w\PYZus{}LM}\PY{p}{,} \PY{n}{t\PYZus{}LM} \PY{o}{=} \PY{n}{fromP}\PY{p}{(}\PY{n}{P\PYZus{}new}\PY{p}{)}
+                  \PY{n}{p\PYZus{}new} \PY{o}{=} \PY{n}{getH}\PY{p}{(}\PY{n}{w2R}\PY{p}{(}\PY{n}{w\PYZus{}LM}\PY{p}{)}\PY{p}{,} \PY{n}{t\PYZus{}LM}\PY{p}{)}
+                  \PY{n}{x\PYZus{}new} \PY{o}{=} \PY{n}{proj}\PY{p}{(}\PY{n}{p\PYZus{}new}\PY{p}{,}\PY{n}{fromHomo}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{T}
+                  \PY{n}{err} \PY{o}{=} \PY{n}{calcError}\PY{p}{(}\PY{n}{x\PYZus{}meas}\PY{p}{,}\PY{n}{x\PYZus{}new}\PY{p}{)}
+                  \PY{n}{cost\PYZus{}new} \PY{o}{=} \PY{n}{calcCost}\PY{p}{(}\PY{n}{err}\PY{p}{,}\PY{n}{cov\PYZus{}inv}\PY{p}{)}
+                  \PY{k}{if} \PY{n}{cost\PYZus{}new}\PY{o}{\PYZlt{}}\PY{n}{cost}\PY{p}{:}
+                      \PY{k}{return} \PY{n}{w\PYZus{}LM}\PY{p}{,} \PY{n}{t\PYZus{}LM}\PY{p}{,} \PY{n}{cost\PYZus{}new}\PY{p}{,} \PY{n}{l}\PY{o}{/}\PY{n}{v}
+                  \PY{k}{else}\PY{p}{:}
+                      \PY{n}{l} \PY{o}{=} \PY{n}{l}\PY{o}{*}\PY{n}{v}        
+              \PY{k}{return} \PY{n}{w}\PY{p}{,} \PY{n}{t}\PY{p}{,} \PY{n}{cost}\PY{p}{,} \PY{n}{l}
+          
+          \PY{k}{def} \PY{n+nf}{LM}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{w\PYZus{}LM}\PY{p}{,} \PY{n}{t\PYZus{}LM}\PY{p}{,} \PY{n}{x\PYZus{}hat}\PY{p}{,} \PY{n}{K}\PY{p}{)}\PY{p}{:}
+              \PY{c+c1}{\PYZsh{} LM hyperparameters}
+              \PY{n}{l}\PY{o}{=}\PY{o}{.}\PY{l+m+mi}{001}
+              \PY{n}{v}\PY{o}{=}\PY{l+m+mi}{10}
+              \PY{n}{tol} \PY{o}{=} \PY{l+m+mi}{10}\PY{n}{e}\PY{o}{\PYZhy{}}\PY{l+m+mi}{07}
+              \PY{n}{max\PYZus{}iters}\PY{o}{=}\PY{l+m+mi}{10}
+              
+              \PY{n}{X\PYZus{}inh} \PY{o}{=} \PY{n}{X}
+              \PY{n}{X} \PY{o}{=} \PY{n}{toHomo}\PY{p}{(}\PY{n}{X\PYZus{}inh}\PY{p}{)}
+              \PY{n}{x\PYZus{}meas} \PY{o}{=} \PY{n}{x}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{T}
+              \PY{n}{scale} \PY{o}{=} \PY{l+m+mi}{1}\PY{o}{/}\PY{n}{K}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}
+              \PY{n}{sigma} \PY{o}{=} \PY{n}{scale}\PY{o}{*}\PY{n}{np}\PY{o}{.}\PY{n}{eye}\PY{p}{(}\PY{n}{x\PYZus{}meas}\PY{o}{.}\PY{n}{squeeze}\PY{p}{(}\PY{p}{)}\PY{o}{.}\PY{n}{shape}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+              \PY{n}{cov\PYZus{}inv} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{linalg}\PY{o}{.}\PY{n}{inv}\PY{p}{(}\PY{n}{sigma}\PY{p}{)}
+              
+              \PY{c+c1}{\PYZsh{} initial error estimate}
+              \PY{n}{p\PYZus{}hat} \PY{o}{=} \PY{n}{getH}\PY{p}{(}\PY{n}{w2R}\PY{p}{(}\PY{n}{w\PYZus{}LM}\PY{p}{)}\PY{p}{,}\PY{n}{t\PYZus{}LM}\PY{p}{)}
+              \PY{n}{x\PYZus{}est} \PY{o}{=} \PY{n}{proj}\PY{p}{(}\PY{n}{P\PYZus{}hat}\PY{p}{,}\PY{n}{X\PYZus{}inh}\PY{p}{)}\PY{o}{.}\PY{n}{T}\PY{o}{.}\PY{n}{reshape}\PY{p}{(}\PY{l+m+mi}{1}\PY{p}{,}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}\PY{o}{.}\PY{n}{T}
+              \PY{n}{error} \PY{o}{=} \PY{n}{calcError}\PY{p}{(}\PY{n}{x\PYZus{}meas}\PY{p}{,}\PY{n}{x\PYZus{}est}\PY{p}{)}
+              \PY{n}{cost} \PY{o}{=} \PY{n}{calcCost}\PY{p}{(}\PY{n}{error}\PY{p}{,}\PY{n}{cov\PYZus{}inv}\PY{p}{)}
+              \PY{n}{cost\PYZus{}prev} \PY{o}{=} \PY{n}{cost}\PY{o}{+}\PY{l+m+mi}{1}
+              \PY{n}{x\PYZus{}predhat} \PY{o}{=} \PY{n}{p\PYZus{}hat}\PY{o}{.}\PY{n}{dot}\PY{p}{(}\PY{n}{X}\PY{p}{)}
+              \PY{n}{J} \PY{o}{=} \PY{n}{jacobian}\PY{p}{(}\PY{n}{x\PYZus{}predhat}\PY{p}{,} \PY{n}{fromHomo}\PY{p}{(}\PY{n}{X}\PY{p}{)}\PY{p}{,} \PY{n}{toP}\PY{p}{(}\PY{n}{w\PYZus{}LM}\PY{p}{,}\PY{n}{t\PYZus{}LM}\PY{p}{)}\PY{p}{)}
+              \PY{n}{costs} \PY{o}{=} \PY{p}{[}\PY{p}{]}
+              \PY{n}{costs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{cost}\PY{p}{)}
+              \PY{n+nb}{print}\PY{p}{(}\PY{n}{cost}\PY{p}{)}
+          
+              \PY{n}{i} \PY{o}{=} \PY{l+m+mi}{0}
+              \PY{c+c1}{\PYZsh{} LM optimization loop}
+              \PY{k}{while} \PY{n}{tol}\PY{o}{\PYZlt{}}\PY{n+nb}{abs}\PY{p}{(}\PY{n}{cost\PYZus{}prev}\PY{o}{\PYZhy{}}\PY{n}{cost}\PY{p}{)}\PY{p}{:}
+                  \PY{n}{cost\PYZus{}prev} \PY{o}{=} \PY{n}{cost}
+                  \PY{n}{w\PYZus{}LM}\PY{p}{,} \PY{n}{t\PYZus{}LM}\PY{p}{,} \PY{n}{cost\PYZus{}LM}\PY{p}{,} \PY{n}{l} \PY{o}{=} \PY{n}{LMstep}\PY{p}{(}\PY{n}{w\PYZus{}LM}\PY{p}{,} \PY{n}{t\PYZus{}LM}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{K}\PY{p}{,} \PY{n}{l}\PY{p}{,} \PY{n}{v}\PY{p}{)}
+                  \PY{n}{cost} \PY{o}{=} \PY{n}{cost\PYZus{}LM}
+                  \PY{n}{costs}\PY{o}{.}\PY{n}{append}\PY{p}{(}\PY{n}{cost}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+                  \PY{n+nb}{print} \PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iter }\PY{l+s+si}{\PYZpc{}d}\PY{l+s+s1}{ cost }\PY{l+s+si}{\PYZpc{}f}\PY{l+s+s1}{\PYZsq{}}\PY{o}{\PYZpc{}}\PY{p}{(}\PY{n}{i}\PY{o}{+}\PY{l+m+mi}{1}\PY{p}{,} \PY{n}{cost\PYZus{}LM}\PY{p}{)}\PY{p}{)}
+                  \PY{n}{i}\PY{o}{+}\PY{o}{=}\PY{l+m+mi}{1}
+              \PY{k}{return} \PY{n}{w\PYZus{}LM}\PY{p}{,} \PY{n}{t\PYZus{}LM}\PY{p}{,} \PY{n}{cost\PYZus{}LM}\PY{p}{,} \PY{n}{l}\PY{p}{,} \PY{n}{costs}\PY{p}{,} \PY{n}{i}
+          
+          \PY{n}{w\PYZus{}LM}\PY{p}{,} \PY{n}{t\PYZus{}LM}\PY{p}{,} \PY{n}{cost\PYZus{}LM}\PY{p}{,} \PY{n}{l}\PY{p}{,} \PY{n}{costs}\PY{p}{,} \PY{n}{iters} \PY{o}{=} \PY{n}{LM}\PY{p}{(}\PY{n}{x\PYZus{}normhat}\PY{p}{,} \PY{n}{X\PYZus{}In}\PY{p}{,} \PY{n}{w\PYZus{}LM}\PY{p}{,} \PY{n}{t\PYZus{}LM}\PY{p}{,} \PY{n}{x\PYZus{}hatIn}\PY{p}{,} \PY{n}{K}\PY{p}{)}
+          
+          \PY{n}{R\PYZus{}LM} \PY{o}{=} \PY{n}{w2R}\PY{p}{(}\PY{n}{w\PYZus{}LM}\PY{p}{)}
+              
+          \PY{n}{displayResults}\PY{p}{(}\PY{n}{R\PYZus{}LM}\PY{p}{,} \PY{n}{t\PYZus{}LM}\PY{p}{,} \PY{n}{K}\PY{p}{,} \PY{n}{x}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{inliers}\PY{p}{,} \PY{n}{iters}\PY{p}{,} \PY{n}{cost\PYZus{}LM}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+[[ 73.59122782]]
+iter 1 cost 72.908960
+iter 2 cost 72.908912
+iter 3 cost 72.908912
+R = 
+[[ 0.27791524 -0.6911285   0.66716154]
+ [ 0.6619467  -0.36551543 -0.65438905]
+ [ 0.69612476  0.62349007  0.35590792]]
+t = 
+[[   5.53098571]
+ [   7.60875224]
+ [ 175.90438326]]
+cost =  [[ 72.90891199]]
+itterations =  3
+
+    \end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_8_1.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}170}]:} \PY{k+kn}{from} \PY{n+nn}{matplotlib} \PY{k}{import} \PY{n}{pyplot} \PY{k}{as} \PY{n}{plt}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{plot}\PY{p}{(}\PY{n+nb}{range}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{costs}\PY{p}{)}\PY{p}{)}\PY{p}{,}\PY{n}{costs}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{xlabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{iterations}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{ylabel}\PY{p}{(}\PY{l+s+s1}{\PYZsq{}}\PY{l+s+s1}{cost}\PY{l+s+s1}{\PYZsq{}}\PY{p}{)}
+          \PY{n}{plt}\PY{o}{.}\PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{output_9_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
